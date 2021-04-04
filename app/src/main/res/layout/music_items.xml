@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:layout_marginTop="5dp"
+    android:id="@+id/audio_item">
+
+    <ImageView
+        android:id="@+id/music_imeg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="5dp"
+        app:srcCompat="@drawable/mk" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File Name"
+        android:layout_toEndOf="@id/music_imeg"
+        android:layout_marginStart="10dp"
+        android:layout_centerVertical="true"
+        android:textColor="#B32B01"
+        android:id="@+id/music_file_name"/>
+</RelativeLayout>
