@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".playerActivity2">
+    tools:context=".playerActivity2"
+    tools:ignore="NamespaceTypo">
 
 
     <RelativeLayout
@@ -34,7 +35,7 @@
             android:background="@android:color/transparent"
             android:gravity="center_horizontal"
             android:text="Now Playing"
-            android:textColor="@color/purple_700"
+            android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -52,7 +53,8 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="330dp"
-        android:layout_below="@+id/layout_top_btn">
+        android:layout_below="@+id/layout_top_btn"
+        tools:ignore="MissingClass">
 
 
         <ImageView
@@ -62,28 +64,49 @@
             android:scaleType="fitCenter"
             android:src="@drawable/mk" />
 
+
         <ImageView
             android:id="@+id/imageViewGredient"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="350dp"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/gridient_bg" />
+            android:layout_marginBottom="3dp" />
 
+        <com.gauravk.audiovisualizer.visualizer.BarVisualizer
+            android:id="@+id/bar"
+            android:layout_width="wrap_content"
+            android:layout_height="293dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            app:avColor="@color/purple_500"
+            app:avDensity="0.3"
+            app:avSpeed="normal"
+            app:avType="outline"
+            app:avWidth="0dp" />
     </RelativeLayout>
+
 
     <TextView
         android:id="@+id/songName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="333dp"
+        android:layout_height="29dp"
         android:layout_below="@+id/card"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:clickable="true"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:singleLine="true"
-        android:text="This is Song Name"
-        android:textColor="@color/purple_500"
+        android:text="@string/this_is_song_name"
+        android:textColor="@color/purple_700"
         android:textSize="22dp"
         android:textStyle="bold" />
 
@@ -94,15 +117,15 @@
         android:layout_below="@+id/songName"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="40dp"
         android:clickable="true"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:singleLine="true"
-        android:text="This is Song Name"
+        android:text="This is artistName"
         android:textColor="@color/purple_500"
         android:textSize="18dp" />
-
 
     <RelativeLayout
         android:id="@+id/relative_layout_button"
@@ -141,14 +164,14 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_play_arrow"
-            app:backgroundTint="#FF5722" />
+            app:backgroundTint="#B63107" />
 
         <ImageView
             android:id="@+id/id_next"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/play_pause"
             android:src="@drawable/ic_skip_next" />
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import static com.chizzy.musicplayer.MainActivity.musicFiles;
+import static com.chizzy.musicplayer.MusicAdapter.mFiles;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +30,7 @@ public class SongsFragment extends Fragment {
     private String mParam2;
 
     RecyclerView recyclerView;
-    MusicAdapter musicAdapter;
+   static MusicAdapter musicAdapter;
     public SongsFragment() {
         // Required empty public constructor
     }
@@ -68,7 +69,7 @@ public class SongsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_songs, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        if (!( musicFiles.size() < 1)){
+        if (!(musicFiles.size() < 1)){
             musicAdapter = new MusicAdapter(getContext(),musicFiles);
             recyclerView.setAdapter(musicAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,

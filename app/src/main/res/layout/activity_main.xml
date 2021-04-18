@@ -12,16 +12,15 @@
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#231916"
+        android:background="#17100E"
         android:id="@+id/tab_layout"
         app:tabIndicatorFullWidth="true"
-        app:tabIndicatorGravity="center"
+        app:tabIndicatorGravity="stretch"
         app:tabTextColor="#000000"
         app:tabIndicatorHeight="50dp"
-        app:tabIndicatorColor="#251919"
+        app:tabIndicatorColor="#130F0D"
         app:tabBackground="@drawable/tab_indicator"/>
-    
-    
+
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
