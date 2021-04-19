@@ -35,7 +35,7 @@
             android:background="@android:color/transparent"
             android:gravity="center_horizontal"
             android:text="Now Playing"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/tertiary_text_light"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -61,8 +61,7 @@
             android:id="@+id/cover_art"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mk" />
+            android:scaleType="fitCenter"/>
 
 
         <ImageView
@@ -79,7 +78,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="1dp"
+            android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             app:avColor="@color/purple_500"
@@ -106,7 +105,7 @@
         android:gravity="center_horizontal"
         android:singleLine="true"
         android:text="@string/this_is_song_name"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/purple_500"
         android:textSize="22dp"
         android:textStyle="bold" />
 
@@ -124,7 +123,7 @@
         android:gravity="center_horizontal"
         android:singleLine="true"
         android:text="This is artistName"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/purple_700"
         android:textSize="18dp" />
 
     <RelativeLayout
@@ -164,7 +163,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_play_arrow"
-            app:backgroundTint="#B63107" />
+            app:backgroundTint="#CC3303" />
 
         <ImageView
             android:id="@+id/id_next"
@@ -189,39 +188,40 @@
 
     </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:layout_above="@+id/relative_layout_button"
-    android:id="@+id/seek_bar_layout"
-    android:layout_marginBottom="15dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1:28"
-        android:id="@+id/durationPlayed"
-        android:textColor="@color/purple_700"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4:28"
-        android:id="@+id/durationTotal"
-        android:textColor="@color/purple_700"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentEnd="true"/>
-
-    <SeekBar
+    <RelativeLayout
+        android:id="@+id/seek_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="60dp"
+        android:layout_above="@+id/relative_layout_button"
+        android:layout_marginBottom="15dp">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/durationPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:text="1:28"
+            android:textColor="@color/purple_700" />
+
+        <TextView
+            android:id="@+id/durationTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:text="4:28"
+            android:textColor="@color/purple_700" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="#25685E5B" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

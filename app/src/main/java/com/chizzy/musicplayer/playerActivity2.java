@@ -561,7 +561,7 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
                 RelativeLayout mContainer = findViewById(R.id.mContainer);
                 gredient .setBackgroundResource(R.drawable.gridient_bg);
                 mContainer.setBackgroundResource(R.drawable.main_bg);
-                song_name.setTextColor(Color.RED);
+                song_name.setTextColor(Color.DKGRAY);
                 artist_name.setTextColor(Color.DKGRAY);
             }
         }

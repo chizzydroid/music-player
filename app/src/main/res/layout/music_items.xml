@@ -16,15 +16,15 @@
         app:srcCompat="@drawable/mk" />
 
     <TextView
+        android:id="@+id/music_file_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="File Name"
-        android:layout_toEndOf="@id/music_imeg"
-        android:layout_marginStart="10dp"
         android:layout_centerVertical="true"
-        android:textColor="#B32B01"
+        android:layout_marginStart="10dp"
         android:layout_toStartOf="@+id/menuDelete"
-        android:id="@+id/music_file_name"/>
+        android:layout_toEndOf="@id/music_imeg"
+        android:text="File Name"
+        android:textColor="@color/purple_500" />
 
     <ImageView
         android:id="@+id/menuDelete"
