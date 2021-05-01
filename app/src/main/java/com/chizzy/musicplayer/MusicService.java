@@ -132,6 +132,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             MusicService getService(){
                 return MusicService.this;
             }
+
         }
     }
 
