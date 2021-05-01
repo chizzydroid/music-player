@@ -40,7 +40,7 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
     TextView song_name, artist_name, durationTotal, durationPlayed;
     ImageView cover_art, nextBtn, preBtn, backBtn, shuffleBtn, repeatBtn;
     FloatingActionButton playPauseBtn;
-    BarVisualizer visualizer;
+   static BarVisualizer visualizer;
     SeekBar seekBar;
     int position = -1;
     static ArrayList<MusicFiles> listSongs = new ArrayList<>();
