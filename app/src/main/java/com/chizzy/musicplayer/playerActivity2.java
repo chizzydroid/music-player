@@ -4,7 +4,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -14,13 +17,16 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
@@ -35,7 +41,7 @@ import static com.chizzy.musicplayer.MainActivity.repeatBoolean;
 import static com.chizzy.musicplayer.MainActivity.shuffleBoolean;
 import static com.chizzy.musicplayer.MusicAdapter.mFiles;
 
-public class playerActivity2 extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
+public class playerActivity2 extends AppCompatActivity implements MediaPlayer.OnCompletionListener,ActionPlay, ServiceConnection {
 
     TextView song_name, artist_name, durationTotal, durationPlayed;
     ImageView cover_art, nextBtn, preBtn, backBtn, shuffleBtn, repeatBtn;
@@ -45,14 +51,16 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
     int position = -1;
     static ArrayList<MusicFiles> listSongs = new ArrayList<>();
     static Uri uri;
-    static MediaPlayer mediaPlayer;
+   static MediaPlayer mediaPlayer;
     private Handler handler = new Handler();
     private Thread playThread, prevThread, nextThread;
-
+  MusicService musicService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_player2);
         intView();
         getIntenMethod();
@@ -121,12 +129,23 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
         });
     }
 
+
+
     @Override
     protected void onResume() {
+        Intent intent = new Intent(this,MusicService.class);
+        bindService(intent,this,BIND_AUTO_CREATE);
         playThread();
         nextThread();
         prevThread();
         super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unbindService(this);
+
     }
 
     private void prevThread() {
@@ -147,7 +166,7 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
 
     }
 
-    private void preBtnClicked() {
+    public void preBtnClicked() {
         if (mediaPlayer.isPlaying()) {
 
             mediaPlayer.stop();
@@ -232,7 +251,7 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
         nextThread.start();
     }
 
-    private void nextBtnClicked() {
+    public void nextBtnClicked() {
         if (mediaPlayer.isPlaying()) {
 
             mediaPlayer.stop();
@@ -310,7 +329,6 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
         return rand.nextInt(i + 1);
     }
 
-
     private void playThread() {
         playThread = new Thread() {
             @Override
@@ -327,7 +345,8 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
         };
         playThread.start();
     }
-    private void playPauseBtnClicked() {
+
+    public void playPauseBtnClicked() {
         if (mediaPlayer.isPlaying()) {
             playPauseBtn.setImageResource(R.drawable.ic_play_arrow);
             mediaPlayer.pause();
@@ -366,7 +385,6 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
 
         });
     }
-
 
     private String formattedTime(int mCurrentPosition) {
         String totalout = "";
@@ -565,6 +583,20 @@ public class playerActivity2 extends AppCompatActivity implements MediaPlayer.On
                 artist_name.setTextColor(Color.DKGRAY);
             }
         }
+
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+           MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
+           musicService = myBinder.getService();
+        Toast.makeText(this, "Connected" + musicService,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        musicService = null;
 
     }
 }
