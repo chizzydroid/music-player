@@ -11,8 +11,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
-        android:id="@+id/relative_layout">
+        android:id="@+id/relative_layout"
+        android:background="#1D7180">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="170dp"
@@ -24,7 +24,7 @@
             android:id="@+id/album_name"
             android:layout_alignParentBottom="true"
             android:text="Album"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/black"
             android:singleLine="true"
             android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"

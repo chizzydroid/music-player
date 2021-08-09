@@ -5,20 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@android:color/darker_gray"
     tools:context=".MainActivity">
 
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#17100E"
+        android:background="#1A1B1B"
         android:id="@+id/tab_layout"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorGravity="stretch"
         app:tabTextColor="#000000"
         app:tabIndicatorHeight="50dp"
-        app:tabIndicatorColor="#130F0D"
+        app:tabIndicatorColor="#131313"
         app:tabBackground="@drawable/tab_indicator"/>
 
     <androidx.viewpager.widget.ViewPager

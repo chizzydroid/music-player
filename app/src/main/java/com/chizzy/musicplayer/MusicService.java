@@ -2,11 +2,16 @@ package com.chizzy.musicplayer;
 
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -19,13 +24,14 @@ import static com.chizzy.musicplayer.playerActivity2.visualizer;
 
 public class MusicService extends Service implements MediaPlayer.OnCompletionListener {
     IBinder mBinder = new MyBinder();
-    MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
 
 
     ArrayList<MusicFiles> musicFiles = new ArrayList<>();
     Uri uri;
     int position = -1;
-
+    ActionPlay actionPlaying;
+    Toast toast;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,93 +52,125 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
         return audioSessionId;
     }
 
-        @Override
-        public int onStartCommand (Intent intent,int flags, int startId){
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
         int myPosition = intent.getIntExtra("servicePosition",-1);
-        if (myPosition != -1){
-            playMedia(myPosition);
+        String actionName = intent.getStringExtra("ActionName");
+        if (myPosition != -1) {
+           playMedia(myPosition);
         }
-            return START_STICKY;
+
+        if (actionName != null){
+            switch (actionName) {
+                case "playPause":
+                    toast = Toast.makeText(this, "PlayPause", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 0);
+                    toast.show();
+                    break;
+                        case  "next":
+                            toast = Toast.makeText(this,"next",Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.BOTTOM,0,0);
+                            toast.show();
+                                  break;
+                        case  "Previous":
+                            toast = Toast.makeText(this,"Previous",Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.BOTTOM,0,0);
+                            toast.show();
+                             break;
+
+            }
+
         }
+        return START_STICKY;
+    }
 
     private void playMedia(int StartPosition) {
         musicFiles = listSongs;
         position = StartPosition;
 
-        if (mediaPlayer != null){
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
 
-            if (musicFiles != null){
-                createMediaPlayer(position);
-                mediaPlayer.start();
-            }else {
+            if (musicFiles != null) {
                 createMediaPlayer(position);
                 mediaPlayer.start();
             }
+            }else{
+                createMediaPlayer(position);
+                mediaPlayer.start();
+
         }
 
     }
-
     void start (){
 
-            mediaPlayer.start();
-        }
+        mediaPlayer.start();
+    }
 
-        boolean isPlaying () {
+    boolean isPlaying () {
 
         return mediaPlayer.isPlaying();
 
-        }
+    }
 
-        void stop() {
-            mediaPlayer.stop();
-        }
+    void stop() {
+        mediaPlayer.stop();
+    }
 
-        void release () {
+    void release () {
 
         mediaPlayer.release();
-        }
+    }
 
-        int getDuration () {
+    int getDuration () {
 
         return mediaPlayer.getDuration();
-        }
+    }
 
-        void seekTo ( int position){
-            mediaPlayer.seekTo(position);
-        }
+    void seekTo ( int position){
+        mediaPlayer.seekTo(position);
+    }
 
-       int getCurrentPosition() {
-
+   int getCurrentPosition(){
         return mediaPlayer.getCurrentPosition();
+   }
+    void createMediaPlayer ( int position){
+        uri = Uri.parse(musicFiles.get(position).getPath());
+        mediaPlayer = MediaPlayer.create(getBaseContext(), uri);
+    }
 
-        }
+    public void createMediaPlayer() {
+    }
 
-        void createMediaPlayer ( int position){
-            uri = Uri.parse(musicFiles.get(position).getPath());
-            mediaPlayer = MediaPlayer.create(getBaseContext(), uri);
-        }
-
-        void pause(){
+ void pause() {
         mediaPlayer.pause();
-        }
+ }
 
-        void onCompleted(){
-
+ void OnCompleted(){
         mediaPlayer.setOnCompletionListener(this);
-        }
+ }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-
+        if (actionPlaying != null){
+          actionPlaying.nextBtnClicked();
     }
+           createMediaPlayer(position);
+            mediaPlayer.start();
+           OnCompleted();
 
-    public class MyBinder extends Binder {
-            MusicService getService(){
-                return MusicService.this;
-            }
+            int audioSessionId = mediaPlayer.getAudioSessionId();
+            if (audioSessionId != -1) {
+                visualizer.setAudioSessionId(audioSessionId);
 
         }
     }
+
+    public class MyBinder extends Binder {
+        MusicService getService(){
+            return MusicService.this;
+        }
+}
+}
 

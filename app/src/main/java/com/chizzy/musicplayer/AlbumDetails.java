@@ -44,7 +44,7 @@ public class AlbumDetails extends AppCompatActivity {
 
         } else {
             Glide.with(this)
-                    .load(R.drawable.mk)
+                    .load(R.drawable.mii)
                     .into(albumPhoto);
         }
     }
