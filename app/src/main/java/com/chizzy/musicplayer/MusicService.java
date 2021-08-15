@@ -66,16 +66,28 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                     toast = Toast.makeText(this, "PlayPause", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.BOTTOM, 0, 0);
                     toast.show();
+                    if (actionPlaying != null){
+                        Log.e("Inside","Action");
+                        actionPlaying.playPauseBtnClicked();
+                    }
                     break;
                         case  "next":
                             toast = Toast.makeText(this,"next",Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.BOTTOM,0,0);
                             toast.show();
+                            if (actionPlaying != null) {
+                                Log.e("Inside","Action");
+                                actionPlaying.nextBtnClicked();
+                            }
                                   break;
                         case  "Previous":
                             toast = Toast.makeText(this,"Previous",Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.BOTTOM,0,0);
                             toast.show();
+                            if (actionPlaying != null) {
+                                Log.e("Inside","Action");
+                                actionPlaying.preBtnClicked();
+                            }
                              break;
 
             }
@@ -165,6 +177,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                 visualizer.setAudioSessionId(audioSessionId);
 
         }
+
     }
 
     public class MyBinder extends Binder {
@@ -172,5 +185,8 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             return MusicService.this;
         }
 }
+    void setCallBack(ActionPlay actionPlaying){
+ this.actionPlaying = actionPlaying;
+    }
 }
 
