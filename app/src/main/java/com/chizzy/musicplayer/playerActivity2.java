@@ -512,7 +512,7 @@ public class playerActivity2<audioSessionId> extends AppCompatActivity implement
         } else {
             Glide.with(this)
                     .asBitmap()
-                    .load(R.drawable.mii)
+                    .load(R.drawable.my)
                     .into(cover_art);
             ImageView gredient = findViewById(R.id.imageViewGredient);
             RelativeLayout mContainer = findViewById(R.id.mContainer);
@@ -612,7 +612,7 @@ public class playerActivity2<audioSessionId> extends AppCompatActivity implement
             if (picture != null) {
                 thumb = BitmapFactory.decodeByteArray(picture, 0, picture.length);
             } else {
-                thumb = BitmapFactory.decodeResource(getResources(), R.drawable.mii);
+                thumb = BitmapFactory.decodeResource(getResources(), R.drawable.my);
             }
             Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID_2)
                     .setSmallIcon(playPauseBtn)

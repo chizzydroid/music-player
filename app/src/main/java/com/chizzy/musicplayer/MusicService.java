@@ -2,13 +2,17 @@ package com.chizzy.musicplayer;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -25,16 +29,23 @@ import static com.chizzy.musicplayer.playerActivity2.visualizer;
 public class MusicService extends Service implements MediaPlayer.OnCompletionListener {
     IBinder mBinder = new MyBinder();
     static MediaPlayer mediaPlayer;
-
-
     ArrayList<MusicFiles> musicFiles = new ArrayList<>();
     Uri uri;
     int position = -1;
     ActionPlay actionPlaying;
+    public static  final  String MUSIC_LAST_PLAYED = "LAST_PLAYED";
+    public static final String MUSIC_FILE = "STORED_MUSIC";
+    public static  final  String ARTIST_NAME = "ARTIST_NAME";
+    public static final String SONG_NAME = "SONG_NAME";
+    MediaSessionCompat mediaSessionCompat;
+
+
     Toast toast;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mediaSessionCompat = new MediaSessionCompat(getBaseContext(),"My Audio");
     }
 
     @Nullable
@@ -147,14 +158,17 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
    int getCurrentPosition(){
         return mediaPlayer.getCurrentPosition();
    }
-    void createMediaPlayer ( int position){
+    void createMediaPlayer ( int positionInner){
+        position = positionInner;
         uri = Uri.parse(musicFiles.get(position).getPath());
-        mediaPlayer = MediaPlayer.create(getBaseContext(), uri);
-    }
+        SharedPreferences .Editor editor = getSharedPreferences(MUSIC_LAST_PLAYED,
+                MODE_PRIVATE)
+                .edit();
 
-    public void createMediaPlayer() {
+     editor.putString(MUSIC_FILE,uri.toString());
+     editor.apply();
+        mediaPlayer = MediaPlayer.create(getBaseContext(),uri);
     }
-
  void pause() {
         mediaPlayer.pause();
  }
@@ -187,6 +201,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
 }
     void setCallBack(ActionPlay actionPlaying){
  this.actionPlaying = actionPlaying;
+
     }
 }
 

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/album_photo"
-        android:src="@drawable/mii"
+        android:src="@drawable/my"
         android:scaleType="centerCrop"/>
 
 

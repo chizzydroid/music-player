@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,20 +9,36 @@
     tools:context=".MainActivity">
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#1A1B1B"
-        android:id="@+id/tab_layout"
-        app:tabIndicatorFullWidth="true"
-        app:tabIndicatorGravity="stretch"
-        app:tabTextColor="#000000"
-        app:tabIndicatorHeight="50dp"
-        app:tabIndicatorColor="#131313"
-        app:tabBackground="@drawable/tab_indicator"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1A1B1B"
+            app:tabBackground="@drawable/tab_indicator"
+            app:tabIndicatorColor="#131313"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorGravity="stretch"
+            app:tabIndicatorHeight="50dp"
+            app:tabTextColor="#000000" />
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewPager" />
-</LinearLayout >
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tab_layout"
+        android:layout_alignBottom="@id/frag_bottom_player" />
+
+    <FrameLayout
+        android:id="@+id/frag_bottom_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+  <fragment
+      android:name="com.chizzy.musicplayer.NowPlayingFragmentB"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      tools:layout="@layout/fragment_now_playing_b"/>
+    </FrameLayout>
+</RelativeLayout>

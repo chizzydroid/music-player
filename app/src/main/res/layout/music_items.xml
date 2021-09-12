@@ -12,7 +12,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:padding="5dp"
-        app:srcCompat="@drawable/mii" />
+        app:srcCompat="@drawable/my" />
 
     <TextView
         android:id="@+id/music_file_name"

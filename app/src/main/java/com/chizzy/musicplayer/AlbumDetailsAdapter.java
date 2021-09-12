@@ -44,7 +44,7 @@ public class AlbumDetailsAdapter extends RecyclerView.Adapter<AlbumDetailsAdapte
 
         } else {
             Glide.with(mContext)
-                    .load(R.drawable.mii)
+                    .load(R.drawable.my)
                     .into(holder.album_image);
         }
          holder.itemView.setOnClickListener(new View.OnClickListener() {

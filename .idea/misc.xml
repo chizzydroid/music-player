@@ -13,8 +13,12 @@
         <entry key="app/src/main/res/drawable/ic_shuffle_off.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_skip_next.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_skip_previous.xml" value="0.371875" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/activity_album_details.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_player2.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_album.xml" value="0.33055555555555555" />
+        <entry key="app/src/main/res/layout/fragment_now_playing_b.xml" value="0.33055555555555555" />
+        <entry key="app/src/main/res/layout/music_items.xml" value="0.2361111111111111" />
       </map>
     </option>
   </component>
