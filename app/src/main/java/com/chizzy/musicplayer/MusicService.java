@@ -165,6 +165,8 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                 MODE_PRIVATE)
                 .edit();
      editor.putString(MUSIC_FILE,uri.toString());
+     editor.putString(ARTIST_NAME,musicFiles.get(position).getArtist());
+     editor.putString(SONG_NAME,musicFiles.get(position).getTitle());
      editor.apply();
         mediaPlayer = MediaPlayer.create(getBaseContext(),uri);
     }
@@ -201,6 +203,9 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     void setCallBack(ActionPlay actionPlaying){
  this.actionPlaying = actionPlaying;
 
+    }
+    void nextBtnClicked(){
+        
     }
 }
 
